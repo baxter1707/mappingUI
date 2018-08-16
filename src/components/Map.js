@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Map, TileLayer, Marker, Popup } from 'react-leaflet'
 import L from 'leaflet';
 import '../leaflet.css';
+import { connect } from 'react-redux'
 
 delete L.Icon.Default.prototype._getIconUrl;
 
@@ -25,22 +26,38 @@ const MyMarkersList = ({ markers }) => {
   return <div>{items}</div>
 }
 
-export default class CustomMap extends Component {
+
+
+export  class CustomMap extends Component {
   state = {
-    lat: 51.505,
-    lng: -0.09,
-    zoom: 13,
+    lat: 29.78,
+    lng: -95.39,
+    zoom: 9
   }
+
 
   render() {
     const center = [this.state.lat, this.state.lng]
 
-    const markers = [
-      { key: 'marker1', position: [51.5, -0.1], children: 'My first popup' },
-      { key: 'marker2', position: [51.51, -0.1], children: 'My second popup' },
-      { key: 'marker3', position: [51.49, -0.05], children: 'My third popup' },
-      { key: 'marker4', position: [51.49, -0.07], children: 'My third popup' },
+    let markers = [
+
     ]
+    let jsonCoordinates = this.props.coordinates.map((bike,i)=>{
+
+
+       markers = [
+        ...markers,
+        {key:'marker'+ i, position: bike.geometry.coordinates.reverse()}
+      ]
+      i++
+
+
+    })
+console.log(markers)
+
+
+
+
     return (
       <Map center={center} zoom={this.state.zoom}>
         <TileLayer
@@ -52,3 +69,11 @@ export default class CustomMap extends Component {
     )
   }
 }
+
+const mapStateToProps = state => {
+  return{
+    coordinates : state.coordinates
+  }
+}
+
+export default connect(mapStateToProps,null)(CustomMap)

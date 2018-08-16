@@ -1,31 +1,29 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
+import { connect } from 'react-redux'
 
-const styles = theme => ({
-  button: {
-    margin: theme.spacing.unit,
-  },
-  input: {
-    display: 'none',
-  },
-});
 
-function AddButton(props) {
-  const { classes } = props;
+  const button = {
+    margin: '10px',
+  }
+
+const AddButton =  (props) => {
   return (
     <div>
-      <Button variant="contained" color="secondary" className={classes.button}>
-        Add Data
+      <Button variant="contained" color="secondary" style={button} onClick={props.onAddButtonClick}>
+        {props.buttonContent}
       </Button>
 
     </div>
   );
 }
 
-AddButton.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
 
-export default withStyles(styles)(AddButton);
+const mapStateToProps = state => {
+  return {
+    buttonContent : state.buttonContent
+  }
+}
+
+
+export default connect(mapStateToProps, null)(AddButton);

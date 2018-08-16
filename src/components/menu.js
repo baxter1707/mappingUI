@@ -4,19 +4,8 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import AddButton from './AddButton'
 import ClusterButton from './ClusterButton'
-
-
-
-export class BaseMenu extends Component {
-  render(){
-    return(
-      <div>
-        <ButtonAppBar />
-        {this.props.children}
-      </div>
-    )
-  }
-}
+import { connect } from 'react-redux'
+import {loadBikeData} from '../store/actions'
 
 
 
@@ -31,7 +20,8 @@ export class BaseMenu extends Component {
 
 
 
-export class ButtonAppBar extends Component {
+class ButtonAppBar extends Component {
+
   render(){
   return (
     <div style={test}>
@@ -40,7 +30,8 @@ export class ButtonAppBar extends Component {
           <Typography variant="title" color="inherit" style={flex}>
             Menu
           </Typography>
-          <AddButton />
+
+          <AddButton onAddButtonClick = {() => this.props.onAddData(this.props.buttonContent)}/>
           <ClusterButton />
         </Toolbar>
       </AppBar>
@@ -49,6 +40,17 @@ export class ButtonAppBar extends Component {
 }
 }
 
+const mapStateToProps = state => {
+  return {
+    buttonContent:state.buttonContent
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onAddData : (buttonContent) => dispatch(loadBikeData(buttonContent))
+  }
+}
 
 
-export default ButtonAppBar;
+export default connect(mapStateToProps,mapDispatchToProps)(ButtonAppBar);
