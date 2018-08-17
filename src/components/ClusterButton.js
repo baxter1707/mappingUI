@@ -20,8 +20,6 @@ function ClusterButton(props) {
       <Button variant="contained" color="secondary" className={classes.button}>
         Cluster Data
       </Button>
-
-
     </div>
   );
 }

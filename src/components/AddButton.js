@@ -13,7 +13,6 @@ const AddButton =  (props) => {
       <Button variant="contained" color="secondary" style={button} onClick={props.onAddButtonClick}>
         {props.buttonContent}
       </Button>
-
     </div>
   );
 }

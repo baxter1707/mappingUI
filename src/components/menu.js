@@ -17,27 +17,24 @@ import {loadBikeData} from '../store/actions'
     flexGrow: 1,
   };
 
-
-
-
 class ButtonAppBar extends Component {
 
-  render(){
-  return (
-    <div style={test}>
-      <AppBar position="static">
-        <Toolbar>
-          <Typography variant="title" color="inherit" style={flex}>
-            Menu
-          </Typography>
+    render(){
+    return (
+      <div style={test}>
+        <AppBar position="static">
+          <Toolbar>
+            <Typography variant="title" color="inherit" style={flex}>
+              Menu
+            </Typography>
 
-          <AddButton onAddButtonClick = {() => this.props.onAddData(this.props.buttonContent)}/>
-          <ClusterButton />
-        </Toolbar>
-      </AppBar>
-    </div>
-  );
-}
+            <AddButton onAddButtonClick = {() => this.props.onAddData(this.props.buttonContent)}/>
+            <ClusterButton />
+          </Toolbar>
+        </AppBar>
+      </div>
+    );
+  }
 }
 
 const mapStateToProps = state => {

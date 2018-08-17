@@ -4,6 +4,7 @@ import L from 'leaflet';
 import '../leaflet.css';
 import { connect } from 'react-redux'
 
+
 delete L.Icon.Default.prototype._getIconUrl;
 
 L.Icon.Default.mergeOptions({
@@ -27,7 +28,6 @@ const MyMarkersList = ({ markers }) => {
 }
 
 
-
 export  class CustomMap extends Component {
   state = {
     lat: 29.78,
@@ -39,24 +39,15 @@ export  class CustomMap extends Component {
   render() {
     const center = [this.state.lat, this.state.lng]
 
-    let markers = [
+    let markers = []
 
-    ]
     let jsonCoordinates = this.props.coordinates.map((bike,i)=>{
-
-
-       markers = [
+        markers = [
         ...markers,
         {key:'marker'+ i, position: bike.geometry.coordinates.reverse()}
-      ]
-      i++
-
-
+        ]
+        i++
     })
-console.log(markers)
-
-
-
 
     return (
       <Map center={center} zoom={this.state.zoom}>

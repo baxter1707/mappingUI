@@ -11,10 +11,9 @@ export const loadBikeData = (buttonContent) => {
       fetch(url)
       .then(response => response.json())
       .then(json => dispatch(loadData(json['features'])))
-    }
+      }
 
       if(buttonContent == 'Remove Data'){
-        console.log('this is firing')
         let url = 'https://bikewise.org/api/v2/locations?proximity=houston&proximity_square=100&limit=25'
         fetch(url)
         .then(response => response.json())
@@ -28,7 +27,6 @@ export const loadData = (coordinates) => {
     type: LOAD_BIKE_DATA,
     coordinates : coordinates,
     buttonContent: 'Remove Data'
-
   }
 }
 
